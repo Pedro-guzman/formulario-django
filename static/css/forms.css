@@ -1,0 +1,59 @@
+input {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid var(--color-text);
+    padding: 5px;
+    width: 100%;
+    margin: 20px;
+    border-radius: 5px;
+}
+select {
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.btn-send {
+    background-color: var(--color-primary);
+    color: white;
+    border: 0;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.aux-btns-forms {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+}
+
+.aux-btns-forms a {
+    padding-right: 10px;
+
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-bottom: 10px;
+    padding-right: 50px;
+    width: 500px;
+    height: 450px;
+    background-color: rgb(140, 197, 221);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}

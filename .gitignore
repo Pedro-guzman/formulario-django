@@ -1,0 +1,20 @@
+# Entornos virtuales
+venv/
+django_env/
+.env
+.env.local
+.env.production
+
+# Archivos de producción
+staticfiles/
+
+# Django
+__pycache__/
+db.sqlite3
+*.pyc
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
