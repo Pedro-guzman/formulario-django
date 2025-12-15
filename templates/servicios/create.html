@@ -3,14 +3,9 @@
 {% block 'title' %}Añadir{% endblock %}
 
 {% block 'styles' %}
-
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/forms.css' %}?v=2">
-
-
+<link rel="stylesheet" href="{% static 'css/forms.css' %}?v=3">
 {% endblock %}
-
-
 
 {% block 'content' %}
 
@@ -21,16 +16,29 @@
     {% endfor %}
 </ul>
 {% endif %}
-    <div class="form"> 
-        <form action="{% url 'servicio_create' %}" method="POST">
-            {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <div class="btns-create">
-            <span class="aux-btns aux-btns-forms"><a href="{% url 'index' %}">Regresar</a></spana>
-                <input type="submit" value="Enviar" class="btn-send-create">
+
+<div class="form"> 
+    <form action="{% url 'servicio_create' %}" method="POST">
+        {% csrf_token %}
+        
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            {{ field }}
+            {% if field.errors %}
+                <span class="error">{{ field.errors }}</span>
+            {% endif %}
         </div>
-        </form>        
-    </div> 
+        {% endfor %}
+        
+        <div class="aux-btns-forms">
+            <a href="{% url 'index' %}">Regresar</a>
+        </div>
+        
+        <div class="btn-wrapper">
+            <input type="submit" value="Enviar" class="btn-send">
+        </div>
+    </form>        
+</div> 
+
 {% endblock %}

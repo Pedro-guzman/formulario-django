@@ -1,59 +1,227 @@
-input {
-    outline: none;
-    box-shadow: none;
-    border: 1px solid var(--color-text);
-    padding: 5px;
+/* Estilos para form-group (Opción 1) o párrafos de Django (Opción 2) */
+.form-group,
+.form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
     width: 100%;
-    margin: 20px;
-    border-radius: 5px;
-}
-select {
-    width: 250px;
-    height: 30px;
-    border-radius: 5px;
 }
 
-.btn-send {
-    background-color: var(--color-primary);
-    color: white;
-    border: 0;
-    padding: 5px;
+/* Labels */
+.form-group label,
+.form p label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a4d5e;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+/* Inputs y textareas */
+.form input[type="text"],
+.form input[type="date"],
+.form input[type="number"],
+.form input[type="email"],
+.form input[type="password"],
+.form textarea {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #1a4d5e;
+    padding: 10px 12px;
+    width: 100%;
+    margin: 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: white;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+    border: 2px solid #1a4d5e;
+    outline: none;
+}
+
+/* Selects */
+.form select {
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    border: 1px solid #1a4d5e;
+    padding: 10px 12px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: white;
     cursor: pointer;
 }
 
-.btn-wrapper {
+/* Mensajes de error */
+.error,
+.errorlist {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 5px;
+    list-style: none;
+    padding: 0;
+}
+
+.errorlist li {
+    margin-bottom: 5px;
+}
+
+/* Botón de enviar mejorado */
+.btn-send,
+.btn-send-create {
+    background: linear-gradient(135deg, #1a4d5e 0%, #2a6d8e 100%);
+    color: white;
+    border: 0;
+    padding: 14px 30px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-send:hover,
+.btn-send-create:hover {
+    background: linear-gradient(135deg, #2a6d8e 0%, #1a4d5e 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-send:active,
+.btn-send-create:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-wrapper,
+.btns-create {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .aux-btns-forms {
-    width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin: 10px;
+    justify-content: center;
+    margin: 15px 0;
 }
 
 .aux-btns-forms a {
-    padding-right: 10px;
-
+    color: #1a4d5e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 15px;
 }
 
+.aux-btns-forms a:hover {
+    color: #2a6d8e;
+    text-decoration: underline;
+}
 
 .form {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 50px;
-    padding-left: 50px;
-    padding-bottom: 10px;
-    padding-right: 50px;
-    width: 500px;
-    height: 450px;
+    margin: 100px auto 20px;
+    padding: 40px 50px;
+    width: 90%;
+    max-width: 600px;
+    min-height: 450px;
     background-color: rgb(140, 197, 221);
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Estilos para mensajes de éxito */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 600px;
+    width: 90%;
+}
+
+.alert-success {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
     border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Media Queries para responsive */
+@media screen and (max-width: 768px) {
+    .form {
+        width: 95%;
+        padding: 30px 25px;
+        margin-top: 50px;
+    }
+    
+    .form-group label,
+    .form p label {
+        font-size: 15px;
+    }
+    
+    .form input,
+    .form select,
+    .form textarea {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form {
+        width: 95%;
+        padding: 20px 15px;
+        margin-top: 30px;
+    }
+    
+    .form-group,
+    .form p {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label,
+    .form p label {
+        font-size: 14px;
+    }
+    
+    .form input,
+    .form select,
+    .form textarea {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    
+    .btn-send,
+    .btn-send-create {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    .aux-btns-forms {
+        margin: 10px 0;
+    }
 }
