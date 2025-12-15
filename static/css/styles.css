@@ -40,28 +40,28 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-main);
 }
 
-/* Barra superior */
+/* Barra superior - HEADER FIJO CON SOMBRA */
 header {
     position: fixed;
     top: 0;
-    margin-left: 200px;
-    width: 100vw;
+    left: 200px; /* Empieza después del nav */
+    width: calc(100vw - 200px); /* Ocupa el resto del ancho */
     height: 80px;
     background-color: white;
-    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
     display: flex;
-    z-index: 1000;
+    z-index: 1000; /* Por encima de todo excepto el nav */
     justify-content: center;
     align-items: center;
-
 }
 
 header h1 {
     color: var(--color-primary);
     font-size: 20px;
+    text-align: center;
 }
 
-/* Barra lateral */
+/* Barra lateral - NAV FIJO */
 nav {
     top: 0;
     display: flex;
@@ -71,6 +71,7 @@ nav {
     background-color: var(--color-primary);
     position: fixed;
     left: 0;
+    z-index: 1001; /* Por encima del header */
 }
 
 nav::after {
@@ -112,19 +113,17 @@ nav ul li a:hover {
     color: var(--color-text-primary);
 }
 
-/* Contenido principal */
+/* Contenido principal - AJUSTADO PARA HEADER FIJO */
 main {
     display: flex;
     width: calc(100vw - 200px);
     margin-left: 200px;   /* espacio lateral */
-    margin-top: 60px;     /* espacio superior */
+    margin-top: 80px;     /* espacio superior ajustado para header fijo */
     padding: 20px;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
 }
-
-
 
 .cabecera {
     background-color: white;
@@ -137,8 +136,7 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra ligera */
 }
 
-
-/* Estilos del txto que se muestra al linicio */
+/* Estilos del texto que se muestra al inicio */
 .texto-principal{
     margin: 100px auto;
 }
@@ -170,7 +168,6 @@ main {
 
 /* Estilos de los botones */
 .btn {
-   
     padding: 5px;
     text-align: center;
     align-items: center;
@@ -199,7 +196,6 @@ main {
     margin-top: 200px;
     margin-left: 300px;
     border-radius: 10px;
-    
 }
 
 .search-bar {
@@ -228,7 +224,6 @@ main {
 .search-btn:hover {
     background-color: transparent;
     color: var(--btn);
- 
 }
 
 .aux-btns {
@@ -250,8 +245,6 @@ main {
     cursor: pointer;
 }
 
-
-
 /* Estilos de mensajes */
 .alert-success {
     width: 100%;
@@ -261,3 +254,82 @@ main {
     color: white;
 }
 
+/* ========================================
+   RESPONSIVE - ADAPTACIÓN MÓVIL
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Ocultar nav lateral en móviles */
+    nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    nav ul {
+        flex-direction: row;
+        height: auto;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* Header ocupa todo el ancho en móvil */
+    header {
+        left: 0;
+        width: 100vw;
+        height: 60px;
+        justify-content: center;
+
+    }
+
+    header h1 {
+        font-size: 16px;
+        text-align: center;
+
+    }
+
+    /* Main ajustado para móvil */
+    main {
+        margin-left: 0;
+        margin-top: 60px;
+        width: 100vw;
+        padding: 15px;
+    }
+
+    /* Ajustar listas y búsquedas */
+    .list {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .search {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .logo {
+        width: 50px;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        height: 50px;
+    }
+
+    header h1 {
+        font-size: 14px;
+    }
+
+    main {
+        margin-top: 50px;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 40px;
+        margin-left: 10px;
+    }
+}
