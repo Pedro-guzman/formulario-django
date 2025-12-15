@@ -23,10 +23,12 @@ else:
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv(
-    "ALLOWED_HOSTS",
-    "localhost,127.0.0.1,.onrender.com"
-).split(",")
+allowed_hosts_env = os.getenv("ALLOWED_HOSTS")
+
+if allowed_hosts_env:
+    ALLOWED_HOSTS = allowed_hosts_env.split(",")
+else:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".onrender.com"]
 
 
 # --------------------------
