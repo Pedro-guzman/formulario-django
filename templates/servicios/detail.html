@@ -2,6 +2,12 @@
 
 {% block 'title' %}Detalles{{ servicio.name }}{% endblock %}
 
+{% block 'cabecera' %}
+<div class="texto-principal">
+    <h1>Detalles del servicio</h1>
+</div>   
+{% endblock %}
+
 {% block 'content' %}
        <span class="aux-btns"><a href="{% url 'servicios' %}">Regresar</a></spana>
         <div class="texto-principal">
