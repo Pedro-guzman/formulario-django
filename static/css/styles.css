@@ -258,6 +258,159 @@ main {
     color: white;
 }
 
+/* Estilos de opciones de inicio */
+/* Contenedor de título */
+.tarjeta-titulo {
+    text-align: center;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Contenedor de tarjetas */
+.tarjetas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos del titulo Peter Frank */
+.titulo-resltado { 
+    color: var(--color-text-primary);
+}
+
+.titulo-azul {
+    margin-right: 10px;
+    color: var(--color-primary);
+}
+
+/* Estilos base de cada tarjeta */
+.tarjeta-servicios,
+.tarjeta-añadir,
+.tarjeta-dashboard {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    min-width: 220px;
+    min-height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tarjeta-servicios:hover,
+.tarjeta-añadir:hover,
+.tarjeta-dashboard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos de los enlaces dentro de las tarjetas */
+.tarjeta-servicios a,
+.tarjeta-añadir a,
+.tarjeta-dashboard a {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--font-main);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Colores diferentes para cada tarjeta (opcional) */
+.tarjeta-servicios {
+    border-left: 5px solid #4A90E2; /* Azul */
+}
+
+.tarjeta-añadir {
+    border-left: 5px solid #50C878; /* Verde */
+}
+
+.tarjeta-dashboard {
+    border-left: 5px solid var(--color-text-primary); /* Naranja */
+}
+
+/* Cambio de color en hover */
+.tarjeta-servicios:hover {
+    border-left-color: #2E5C8A;
+    background-color: #f8fbff;
+}
+
+.tarjeta-añadir:hover {
+    border-left-color: #3DA25C;
+    background-color: #f8fff8;
+}
+
+.tarjeta-dashboard:hover {
+    border-left-color: #d97400;
+    background-color: #fff9f5;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .tarjetas {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .tarjeta-servicios,
+    .tarjeta-añadir,
+    .tarjeta-dashboard {
+        width: 100%;
+        min-width: unset;
+        min-height: 120px;
+        padding: 30px 20px;
+    }
+
+    .tarjeta-titulo h1 {
+        font-size: 24px;
+    }
+
+    .tarjeta-servicios a,
+    .tarjeta-añadir a,
+    .tarjeta-dashboard a {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tarjetas {
+        padding: 10px;
+    }
+
+    .tarjeta-servicios,
+    .tarjeta-añadir,
+    .tarjeta-dashboard {
+        min-height: 100px;
+        padding: 25px 15px;
+    }
+
+    .tarjeta-titulo h1 {
+        font-size: 20px;
+    }
+
+    .tarjeta-servicios a,
+    .tarjeta-añadir a,
+    .tarjeta-dashboard a {
+        font-size: 18px;
+    }
+}
+
+
 /* ========================================
    RESPONSIVE - ADAPTACIÓN MÓVIL
    ======================================== */
