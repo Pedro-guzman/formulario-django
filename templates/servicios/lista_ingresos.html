@@ -1,0 +1,86 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block 'title' %}Lista de Ingresos{% endblock %}
+
+{% block 'styles' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}?v=3">
+{% endblock %}
+
+{% block 'cabecera' %}
+<div class="texto-principal">
+    <h1>Lista de Ingresos</h1>
+</div>   
+{% endblock %}
+
+{% block 'content' %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert-success" style="max-width: 1200px; margin: 20px auto;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Tarjetas de totales -->
+    <div class="totales-container">
+        <div class="total-card efectivo">
+            <h5>Total Efectivo</h5>
+            <h3>${{ totales.total_efectivo|default:0 }}</h3>
+        </div>
+        <div class="total-card tarjeta">
+            <h5>Total Tarjeta</h5>
+            <h3>${{ totales.total_tarjeta|default:0 }}</h3>
+        </div>
+        <div class="total-card transferencia">
+            <h5>Total Transferencia</h5>
+            <h3>${{ totales.total_transferencia|default:0 }}</h3>
+        </div>
+        <div class="total-card gran-total">
+            <h5>Gran Total</h5>
+            <h3>${{ gran_total }}</h3>
+        </div>
+    </div>
+
+    <div class="tabla-ingresos">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="{% url 'registrar_ingresos' %}" class="btn-send" style="display: inline-block; text-decoration: none; max-width: 300px;">Registrar Nuevo Ingreso</a>
+        </div>
+
+        <h3>Todos los Ingresos Registrados</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Efectivo</th>
+                        <th>Tarjeta</th>
+                        <th>Transferencia</th>
+                        <th>Total Día</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ingreso in ingresos %}
+                    <tr>
+                        <td>{{ ingreso.fecha }}</td>
+                        <td>${{ ingreso.efectivo }}</td>
+                        <td>${{ ingreso.tarjeta }}</td>
+                        <td>${{ ingreso.transferencia }}</td>
+                        <td><strong>${{ ingreso.total }}</strong></td>
+                        <td>
+                            <a href="{% url 'editar_ingreso' ingreso.id %}" class="btn-sm btn-warning">Editar</a>
+                            <a href="{% url 'eliminar_ingreso' ingreso.id %}" class="btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este registro?')">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" style="text-align: center;">No hay registros de ingresos</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

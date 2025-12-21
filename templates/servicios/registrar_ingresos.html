@@ -1,0 +1,110 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block 'title' %}Registrar ingresos{% endblock %}
+
+{% block 'styles' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}?v=3">
+{% endblock %}
+
+{% block 'cabecera' %}
+<div class="texto-principal">
+    <h1>Registrar Ingresos</h1>
+</div>   
+{% endblock %}
+
+{% block 'content' %}
+    <div class="form-ingresos">
+        <h2>Registrar Ingresos Diarios</h2>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.fecha.id_for_label }}">{{ form.fecha.label }}</label>
+                {{ form.fecha }}
+                {% if form.fecha.errors %}
+                    <div class="text-danger">{{ form.fecha.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="{{ form.efectivo.id_for_label }}">{{ form.efectivo.label }}</label>
+                    {{ form.efectivo }}
+                    {% if form.efectivo.errors %}
+                        <div class="text-danger">{{ form.efectivo.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-4">
+                    <label for="{{ form.tarjeta.id_for_label }}">{{ form.tarjeta.label }}</label>
+                    {{ form.tarjeta }}
+                    {% if form.tarjeta.errors %}
+                        <div class="text-danger">{{ form.tarjeta.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-4">
+                    <label for="{{ form.transferencia.id_for_label }}">{{ form.transferencia.label }}</label>
+                    {{ form.transferencia }}
+                    {% if form.transferencia.errors %}
+                        <div class="text-danger">{{ form.transferencia.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="btn-wrapper">
+                <button type="submit" class="btn-send">Guardar Ingresos</button>
+                <a href="{% url 'lista_ingresos' %}" class="btn-secondary" style="text-align: center; text-decoration: none; display: block;">Ver Todos los Ingresos</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabla con los últimos registros -->
+    <div class="tabla-ingresos">
+        <h3>Últimos 10 Registros</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Efectivo</th>
+                        <th>Tarjeta</th>
+                        <th>Transferencia</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ingreso in ingresos %}
+                    <tr>
+                        <td>{{ ingreso.fecha }}</td>
+                        <td>${{ ingreso.efectivo }}</td>
+                        <td>${{ ingreso.tarjeta }}</td>
+                        <td>${{ ingreso.transferencia }}</td>
+                        <td><strong>${{ ingreso.total }}</strong></td>
+                        <td>
+                            <a href="{% url 'editar_ingreso' ingreso.id %}" class="btn-sm btn-warning">Editar</a>
+                            <a href="{% url 'eliminar_ingreso' ingreso.id %}" class="btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este registro?')">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" style="text-align: center;">No hay registros aún</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
